@@ -8,11 +8,12 @@ import { useNavigate } from 'react-router';
 
 export default function Form_salehome() {
   const [form] = Form.useForm();
-  const [fileName, setFileName] = useState(null);
+  const [selectedImages, setSelectedImages] = useState([]);
   const history = useNavigate();
 
   const onFinish = async (values) => {
-    values.img_show = fileName;
+    // values.img_show = fileName;
+    values.img_all = selectedImages;
     let result = await axios.post(
       import.meta.env.VITE_REACT_APP_API + '/createsalehome',
       values
@@ -55,6 +56,18 @@ export default function Form_salehome() {
         </Flex>
         <br />
         <Form form={form} onFinish={onFinish} autoComplete="off">
+          <Box>รหัสทรัพย์</Box>
+          <Form.Item
+            name="number_home"
+            rules={[
+              {
+                required: true,
+                message: 'รหัสทรัพย์',
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
           <Box>ชื่อ-บ้าน</Box>
           <Form.Item
             name="name_home"
@@ -62,6 +75,18 @@ export default function Form_salehome() {
               {
                 required: true,
                 message: 'ชื่อบ้านที่จะขาย',
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+          <Box>จังหวัด</Box>
+          <Form.Item
+            name="province"
+            rules={[
+              {
+                required: true,
+                message: 'จังหวัด',
               },
             ]}
           >
@@ -104,7 +129,7 @@ export default function Form_salehome() {
             <TextArea rows={4} minLength={20} />
           </Form.Item>
 
-          <Box>อัพโหลดรูปภาพ</Box>
+          {/* <Box>อัพโหลดรูปภาพ</Box>
           <Form.Item>
             <input
               type={'file'}
@@ -153,7 +178,72 @@ export default function Form_salehome() {
                 alt=""
               />
             </div>
+          )} */}
+
+          <Box>อัพโหลดหลายรูปภาพ</Box>
+          <Form.Item>
+            <input
+              type={'file'}
+              onChange={async (e) => {
+                let formData = new FormData();
+                console.log('Selected Files:', e.target.files);
+                for (let i = 0; i < e.target.files.length; i++) {
+                  formData.append('image', e.target.files[i]);
+                }
+                console.log('Selected Images:', selectedImages);
+                try {
+                  let resUpload = await axios.post(
+                    import.meta.env.VITE_REACT_APP_API + '/upload/img_all',
+                    formData
+                  );
+                  console.log('Upload Response:', resUpload);
+                  if (resUpload?.data?.status) {
+                    console.log(
+                      'Selected Images Updated:',
+                      resUpload?.data?.data?.selectedImages
+                    );
+                    setSelectedImages(resUpload?.data?.data?.selectedImages);
+                    swal.fire({
+                      title: '',
+                      text: resUpload?.data?.message,
+                      icon: 'success',
+                      confirmButtonText: 'X',
+                    });
+                  } else {
+                    swal.fire({
+                      title: '',
+                      text: resUpload?.data?.message,
+                      icon: 'error',
+                      confirmButtonText: 'X',
+                    });
+                  }
+                } catch (error) {
+                  if (error.response.status === 401) {
+                    window.location.href = '/login';
+                  }
+                }
+              }}
+              multiple
+              required
+            />
+          </Form.Item>
+          {selectedImages && (
+            <div>
+              {selectedImages.map((image, index) => (
+                <img
+                  className="imgview"
+                  key={index}
+                  src={
+                    import.meta.env.VITE_REACT_APP_API +
+                    '/public/img_all/' +
+                    image
+                  }
+                  alt={`Image ${index + 1}`}
+                />
+              ))}
+            </div>
           )}
+
           <Form.Item>
             <Box mt={3}>
               <Button type="submit" mr={3}>

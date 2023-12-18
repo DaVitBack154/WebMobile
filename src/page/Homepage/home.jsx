@@ -1,10 +1,11 @@
-import { Box, Flex } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 import TableRegister from '../TablePage/tableregister';
 import TablereqUser from '../TablePage/tablerequser';
 import TablePromotion from '../TablePage/tablepromotion';
 import Sidebar from '../../components/sidebar';
 import TableNotify from '../TablePage/tablenotify';
 import TableSaleHome from '../TablePage/tablesalehome';
+import TablePhoneOTP from '../TablePage/tablephoneotp';
 
 export default function Home() {
   return (
@@ -16,19 +17,15 @@ export default function Home() {
         <TablePromotion />
       </Box> */}
 
-      <Flex>
-        <Box w={'15%'} bg={'red.100'}>
-          <Sidebar />
-        </Box>
-        <Box w={'75%'}>
-          <br />
-          <TableRegister />
-          <TablereqUser />
-          <TablePromotion />
-          <TableNotify />
-          <TableSaleHome />
-        </Box>
-      </Flex>
+      <Box w={'full'}>
+        <Sidebar />
+        <TableRegister />
+        <TablereqUser />
+        <TablePromotion />
+        <TableNotify />
+        <TableSaleHome />
+        <TablePhoneOTP />
+      </Box>
     </>
   );
 }

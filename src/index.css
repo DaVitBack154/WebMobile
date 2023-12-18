@@ -13,3 +13,11 @@
 .pg-login {
   margin: 0 auto;
 }
+.imgview {
+  flex-basis: 100px;
+  height: 100%;
+  max-width: 150px;
+  max-height: 150px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}

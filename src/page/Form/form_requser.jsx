@@ -98,18 +98,37 @@ export default function FromReqUser() {
             </Box>
           </Flex>
 
-          <Flex w={'100%'}>
-            <Box w={'50%'}>
-              <Form.Item name={'list_req'} label="รายการขอ">
-                <Input readOnly />
-              </Form.Item>
-            </Box>
-            <Box w={'50%'} ml={2}>
-              <Form.Item name={'receive_no'} label="เลขที่ใบเสร็จ">
-                <Input readOnly />
-              </Form.Item>
-            </Box>
-          </Flex>
+          {dataReq.list_req == 'เอกสารอื่นๆ' ? (
+            <>
+              <Flex w={'100%'}>
+                <Box w={'50%'}>
+                  <Form.Item name={'list_req'} label="รายการขอ">
+                    <Input readOnly />
+                  </Form.Item>
+                </Box>
+                <Box w={'50%'} ml={2}>
+                  <Form.Item name={'other'} label="รายละเอียด">
+                    <Input readOnly />
+                  </Form.Item>
+                </Box>
+              </Flex>
+            </>
+          ) : (
+            <>
+              <Flex w={'100%'}>
+                <Box w={'50%'}>
+                  <Form.Item name={'list_req'} label="รายการขอ">
+                    <Input readOnly />
+                  </Form.Item>
+                </Box>
+                <Box w={'50%'} ml={2}>
+                  <Form.Item name={'receive_no'} label="เลขที่ใบเสร็จ">
+                    <Input readOnly />
+                  </Form.Item>
+                </Box>
+              </Flex>
+            </>
+          )}
 
           {dataReq.sent_emailuser != null ? (
             <>

@@ -11,6 +11,7 @@ import FormUpdatePromotion from './page/Form/formupdatesalehome';
 import Form_notione from './page/Form/form_notione';
 import Form_salehome from './page/Form/form_salehome';
 import FormUpdateSaleHome from './page/Form/formupdatesalehome';
+import Testopt from './page/Testopt';
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Login />} />
+          <Route path="/otp" element={<Testopt />} />
           <Route path="/homepage" element={<Home />} />
           <Route path="/from-promotion" element={<Form_promotion />} />
           <Route

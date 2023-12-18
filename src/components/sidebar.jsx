@@ -1,4 +1,4 @@
-import { Box, Button } from '@chakra-ui/react';
+import { Box, Button, Flex } from '@chakra-ui/react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { resetState } from '../store/actionDispatch';
@@ -18,23 +18,22 @@ export default function Sidebar() {
   };
   return (
     <>
-      <Box h={'100vh'}>
-        <Box textAlign={'center'} display={'flex'} justifyContent={'center'}>
-          <img src="/chase.png" width={180} alt="logocompany" />
-        </Box>
-        <Box p={1}>
-          <hr />
-        </Box>
+      <Box w={'full'}>
+        <Flex bg={'grey'}>
+          <Box textAlign={'center'} display={'flex'} justifyContent={'center'}>
+            <img src="/chase.png" width={180} alt="logocompany" />
+          </Box>
 
-        <Box>DashBoard</Box>
-        <Box>{account?.profile?.EUserName}</Box>
-        <Button
-          onClick={() => {
-            onSignOutPress();
-          }}
-        >
-          Log out
-        </Button>
+          <Box>DashBoard</Box>
+          <Box>{account?.profile?.EUserName}</Box>
+          <Button
+            onClick={() => {
+              onSignOutPress();
+            }}
+          >
+            Log out
+          </Button>
+        </Flex>
       </Box>
     </>
   );

@@ -3,7 +3,7 @@ import { Table } from 'antd';
 import { NavLink } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { AiFillFile } from 'react-icons/ai';
+// import { AiFillFile } from 'react-icons/ai';
 import { SlDocs } from 'react-icons/sl';
 
 export default function TableSaleHome() {
@@ -38,9 +38,21 @@ export default function TableSaleHome() {
       ),
     },
     {
+      title: 'รหัส',
+      dataIndex: 'number_home',
+      key: 'number_home',
+      align: 'center',
+    },
+    {
       title: 'ชื่อบ้าน',
       dataIndex: 'name_home',
       key: 'name_home',
+      align: 'center',
+    },
+    {
+      title: 'จังหวัด',
+      dataIndex: 'province',
+      key: 'province',
       align: 'center',
     },
     {
@@ -58,30 +70,30 @@ export default function TableSaleHome() {
       dataIndex: 'detail_home',
       key: 'detail_home',
     },
-    {
-      title: 'Image_Show',
-      dataIndex: 'img_show',
-      align: 'center',
-      width: 100,
-      render: (_, record) =>
-        record.img_show && (
-          <a
-            href={
-              import.meta.env.VITE_REACT_APP_API +
-              '/public/image/' +
-              record.img_show
-            }
-            target="__blank"
-          >
-            <AiFillFile
-              style={{
-                fontSize: '30px',
-                color: '#90ADAD',
-              }}
-            />
-          </a>
-        ),
-    },
+    // {
+    //   title: 'Image_Show',
+    //   dataIndex: 'img_show',
+    //   align: 'center',
+    //   width: 100,
+    //   render: (_, record) =>
+    //     record.img_show && (
+    //       <a
+    //         href={
+    //           import.meta.env.VITE_REACT_APP_API +
+    //           '/public/image/' +
+    //           record.img_show
+    //         }
+    //         target="__blank"
+    //       >
+    //         <AiFillFile
+    //           style={{
+    //             fontSize: '30px',
+    //             color: '#90ADAD',
+    //           }}
+    //         />
+    //       </a>
+    //     ),
+    // },
     {
       title: 'Status',
       dataIndex: 'status_home',

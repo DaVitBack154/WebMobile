@@ -71,6 +71,18 @@ export default function FormUpdateSaleHome() {
         </Flex>
         <br />
         <Form form={form} onFinish={onFinish} autoComplete="off">
+          <Box>รหัสทรัพย์</Box>
+          <Form.Item
+            name="number_home"
+            rules={[
+              {
+                required: true,
+                message: 'รหัสทรัพย์',
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
           <Box>ชื่อ-บ้าน</Box>
           <Form.Item
             name="name_home"
@@ -78,6 +90,18 @@ export default function FormUpdateSaleHome() {
               {
                 required: true,
                 message: 'ชื่อบ้านที่จะขาย',
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+          <Box>จังหวัด</Box>
+          <Form.Item
+            name="province"
+            rules={[
+              {
+                required: true,
+                message: 'จังหวัด',
               },
             ]}
           >
